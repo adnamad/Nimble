@@ -17,5 +17,6 @@ from django.conf.urls import url
 from django.contrib import admin
 
 urlpatterns = [
+	url(r'^$','X_Home.views.home',name='home'),
     url(r'^admin/', admin.site.urls),
 ]
