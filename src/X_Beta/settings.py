@@ -38,6 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'registration',
+
+    'crispy_forms',
     'X_Home'
 ]
 
@@ -126,3 +130,27 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, "static", "static_root")
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static", "our_static"),
+    #'/var/www/static/',
+]
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, "static", "media_root")
+
+
+# crispy form setting
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
+
+# django registration redux setting
+ACCOUNT_ACTIVATION_DAYS = 3
+REGISTRATION_DEFAULT_FROM_EMAIL = True
+REGISTRATION_EMAIL_HTML = True
+REGISTRATION_AUTO_LOGIN = True
+
+SITE_ID = 1
+LOGIN_REDIRECT_URL ='/'

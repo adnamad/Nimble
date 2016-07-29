@@ -8,3 +8,10 @@ class Articles(models.Model):
 	summary=models.CharField(max_length=300)
 	img_url=models.CharField(max_length=300)
 
+class contact(models.Model):
+    Email = models.EmailField()
+    Name = models.CharField(max_length=20, blank=False)
+    Message = models.CharField(max_length=100)
+
+    def __str__(self):
+        return  self.Name
