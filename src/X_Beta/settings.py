@@ -131,8 +131,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-
-#Set the STATIC_ROOT setting to the directory from which you’d like to serve these files
 STATIC_ROOT = os.path.join(BASE_DIR, "static", "static_root")
 
 STATICFILES_DIRS = [
