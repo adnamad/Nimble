@@ -1,0 +1,16 @@
+body {
+  min-height: 2000px;
+}
+
+..navbar-static-top {
+  margin-bottom: 19px;
+  background-color: #4f696d;
+  border-color: #1A5F23;
+}
+
+ .text-align-center
+      {
+          text-align: center;
+          margin: 0em;
+      }
+
