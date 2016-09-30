@@ -1,0 +1,45 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Case</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+ -->
+<nav class="navbar navbar-default navbar-fixed-top" >
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="{% url 'home' %}">X_BETA</a>
+    </div>
+    <ul class="nav navbar-nav">
+      
+      <li class="active"><a href="{% url 'home' %}">Home</a></li>
+           
+            <li><a href="{% url 'contact' %}">Contact</a></li>
+           
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            {% if request.user.is_authenticated %}
+            <li><a href="{% url 'auth_logout' %}">Logout</a></li>
+            {% else %}
+            <li style="float:right"><a href="{% url 'registration_register' %}">Register</a></li>
+            {% endif %}
+          </ul>
+          {% if not request.user.is_authenticated and not "/accounts/login" in request.get_full_path %}
+          <form class='navbar-form navbar-right' method='POST' action='{% url "auth_login" %}'>{% csrf_token %}
+            <div class='form-group'>
+                  <input type='text' class='form-control' name='username' placeholder='Username' />
+              </div>
+              <div class='form-group'>
+                  <input type='password' class='form-control' name='password' placeholder='Password' />
+              </div>
+              <button type='submit' class='btn btn-default'>Login</button>
+          </form>
+          {% endif %}
+
+  </div>
+</nav>

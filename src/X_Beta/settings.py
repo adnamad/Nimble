@@ -40,10 +40,15 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'registration',
-
+    'guardian',
     'crispy_forms',
     'X_Home'
 ]
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend', # default
+    'guardian.backends.ObjectPermissionBackend',
+)
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
@@ -131,6 +136,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+
+#Set the STATIC_ROOT setting to the directory from which you’d like to serve these files
 STATIC_ROOT = os.path.join(BASE_DIR, "static", "static_root")
 
 STATICFILES_DIRS = [

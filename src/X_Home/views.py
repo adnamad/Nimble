@@ -2,30 +2,37 @@ from django.shortcuts import render
 from .rss_extractor import extractor
 from .models import Articles
 from .forms import contactForm
+from .classifier import clf
 
 def home(request):
     obj = extractor()
     title_news = obj['channel']['title']
     image_url = obj['channel']['image']['url']
 
+    
+
+
     asp = Articles.objects.all()[::-1]
     for news in obj.entries:
         entry_img = news.media_thumbnail[0]["url"]
         entry_title = news.title
         entry_sum = news.summary
+        # entry_prediction = clf(entry_title)
         for ob in asp:
             if entry_title == ob.title:
                 break
         else:
-            a = Articles(title=entry_title, summary=entry_sum, img_url=entry_img)
+            a = Articles(title=entry_title, summary=entry_sum, img_url=entry_img) #, category=entry_prediction)
             a.save()
             asp = Articles.objects.all()[::-1]
 
     asp = Articles.objects.all()[::-1]
+    print(asp[2].title,asp[2].category)
+    print("Ankur")
     context = {
         "ent": asp
     }
-    return render(request,'home.html',context)
+    return render(request,'home1.html',context)
 
     if request.user.is_authenticated() and request.user.is_staff:
         # print(signup.objects.all())

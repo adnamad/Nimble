@@ -1,5 +1,4 @@
 from django.db import models
-
 # Create your models here.
 
 class Articles(models.Model):
@@ -7,6 +6,7 @@ class Articles(models.Model):
 	title=models.CharField(max_length=300)
 	summary=models.CharField(max_length=300)
 	img_url=models.CharField(max_length=300)
+	category = models.CharField(max_length= 20)
 
 class contact(models.Model):
     Email = models.EmailField()
@@ -15,3 +15,4 @@ class contact(models.Model):
 
     def __str__(self):
         return  self.Name
+
