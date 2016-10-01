@@ -1,81 +1,82 @@
-from sklearn.feature_extraction.text import TfidfVectorizer,HashingVectorizer
-from sklearn.ensemble import RandomForestClassifier, VotingClassifier
-from sklearn.cross_validation import train_test_split 
-from sklearn.linear_model import LogisticRegression
-from sklearn.grid_search import GridSearchCV
-from nltk.stem.porter import PorterStemmer
-from sklearn.pipeline import Pipeline
-from nltk.corpus import stopwords
-from sklearn.svm import SVC
-import pyprind,pickle
 import pandas as pd
 import numpy as np
-import nltk,os,re
+import os
+import re
+import dill as pickle
+from nltk import word_tokenize
+from nltk.corpus import stopwords
+from nltk.stem.porter import PorterStemmer 
+from sklearn.grid_search import GridSearchCV
+from sklearn.pipeline import Pipeline
+from sklearn.linear_model import LogisticRegression
+from sklearn.feature_extraction.text import TfidfVectorizer
+
+def clf(example):
+   
+
+	df = pd.read_csv('./news_data_guardian.csv')
+
+	print(df.head())
+	print(df.isnull().sum())
+	print(df['Category'].unique())
+
+	def preprocessor(text):
+		text = re.sub('<[^>]*>', '', text)
+		emoticons = re.sub('(?::|;|=)(?:-)?(?:\)|\(|D|P)','', text)
+		text = re.sub('[\W]+', ' ', text.lower())
+		return text
+
+	df['Headlines']=df['Headlines'].apply(preprocessor)
+	stop = stopwords.words('english')
+	print(df.head())
+
+	def tokenizer(text):
+		tokenized =word_tokenize(text)
+		return tokenized	
+
+	porter = PorterStemmer() 
+	def tokenizer_porter(text):
+		return [porter.stem(word) for word in text.split()] 
+
+	X_train = df.loc[:45000,'Headlines'].values
+	y_train = df.loc[:45000,'Category'].values
+	X_test = df.loc[45000:,'Headlines'].values
+	y_test = df.loc[45000:,'Category'].values
+
+	tfidf = TfidfVectorizer(strip_accents = None, lowercase=False, preprocessor= None)
+
+	param_grid = [{'vect__ngram_range': [(1, 1)],
+	               'vect__stop_words': [stop,None],
+	               'vect__tokenizer': [tokenizer,tokenizer_porter],
+	               'clf__penalty': ['l1', 'l2'],
+	               'clf__C': [1.0, 10.0, 100.0]}]
+
+	pipe_tfidf_lr =Pipeline([('vect',tfidf),('clf',LogisticRegression(random_state=0))])
+
+	gs_clf = GridSearchCV(pipe_tfidf_lr,param_grid,scoring='accuracy',cv=2,verbose=1,n_jobs=-1)
+	gs_clf.fit(X_train,y_train)
+
+	dest = './pkl_objects'
+	if not os.path.exists(dest):
+		os.makedirs(dest)
+	pickle.dump(gs_clf,open(os.path.join(dest, 'news.pkl'), 'wb'),protocol=4) 
+
+	#gs_clf = pickle.load(open(os.path.join('pkl_objects', 'news.pkl'), 'rb'))
+
+	# save_classifier = open("news.pickle","wb")
+	# pickle.dump(gs_lr_tfidf, save_classifier)
+	# save_classifier.close()
+
+	print('CV Accuracy: %.3f' % gs_clf.best_score_)
+
+	clf = gs_clf.best_estimator_      
+
+	label = {0:'politics', 1:'sports', 2:'business',3:'culture',4:'football',5:'tech',6:'world'}
+	# example =['Danny Willett fears becoming ‘target’ for Ryder Cup fans after brother’s article']
+	prediction = label[clf.predict(example)[0]]
+	print(prediction)
+	return(prediction)
 
 
-class Foo(object):
-	def __init__(self, name):
-	        self.name = name
 
 
-	def main():
-		
-		df = pd.read_csv('news_data_guardian.csv')
-		df.dropna(inplace=True)
-
-		X = df['Headlines']
-		y = df['Category']
-
-		print(X.shape,y.shape)
-		X_train,X_test,y_train,y_test = train_test_split(X, y,test_size=0.3,random_state=1)
-
-		stop_words = stopwords.words('english')
-								
-		def tokenizer(text):
-			for c in [',','.','!','?']:
-				text = text.replace(c,"")
-			return nltk.word_tokenize(text) 
-
-		porter = PorterStemmer() 
-		def tokenizer_porter(text):
-			return [porter.stem(word) for word in text.split()] 
-			
-		clf1 = LogisticRegression(random_state=1)
-		clf2 = RandomForestClassifier(random_state=1)
-		clf3 = SVC()
-
-		eclf = VotingClassifier(estimators=[('lr', clf1), ('rf', clf2), ('svc', clf3)], voting='hard')
-
-		vect = HashingVectorizer(decode_error='ignore',
-		                         n_features=2**21,
-		                         preprocessor=None,
-		                         tokenizer=tokenizer)
-
-
-		tfidf = TfidfVectorizer(strip_accents=None,lowercase=False,preprocessor=None) 
-
-		param_grid = [{'vect__ngram_range': [(1, 1)],
-		               'vect__stop_words': [stop_words, None],
-		               'vect__tokenizer': [tokenizer, tokenizer_porter]},
-		              {'vect__ngram_range': [(1, 1)],
-		               'vect__stop_words': [stop_words, None],
-		               'vect__tokenizer': [tokenizer, tokenizer_porter],
-		               'vect__use_idf':[False],
-		               'vect__norm':[None]},
-		              ]
-					  
-		lr_tfidf = Pipeline([('vect', tfidf),('clf', eclf)])
-
-		gs_lr_tfidf = GridSearchCV(lr_tfidf, param_grid,scoring='accuracy',cv = 5,verbose=1,n_jobs=1)
-
-		gs_lr_tfidf.fit(X_train, y_train)
-		save_classifier = open("news.pickle","wb")
-		pickle.dump(gs_lr_tfidf, save_classifier)
-		save_classifier.close()
-
-
-		
-		print('CV Accuracy: %.3f' % gs_lr_tfidf.best_score_)
-
-	if __name__=='__main__':
-		main()

@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'registration',
-    'guardian',
+    #'guardian',
     'crispy_forms',
     'X_Home'
 ]

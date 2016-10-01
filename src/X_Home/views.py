@@ -2,7 +2,7 @@ from django.shortcuts import render
 from .rss_extractor import extractor
 from .models import Articles
 from .forms import contactForm
-from .classifier import clf
+from .newsclf import clf
 
 def home(request):
     obj = extractor()
@@ -17,7 +17,7 @@ def home(request):
         entry_img = news.media_thumbnail[0]["url"]
         entry_title = news.title
         entry_sum = news.summary
-        # entry_prediction = clf(entry_title)
+        entry_prediction = clf(entry_title)
         for ob in asp:
             if entry_title == ob.title:
                 break
