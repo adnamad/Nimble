@@ -26,6 +26,12 @@ SECRET_KEY = 'uowd!zn3-=wvlis&om5*l=$fc3lfia+b+d@-a-2)urx)1a@9e*'
 DEBUG = True
 
 ALLOWED_HOSTS = []
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'ankurmundra2@gmail.com'
+EMAIL_HOST_PASSWORD = '#django@*'
+
 
 
 
@@ -40,7 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'registration',
-    #'guardian',
+    'guardian',
     'crispy_forms',
     'X_Home'
 ]
@@ -71,7 +77,7 @@ ROOT_URLCONF = 'X_Beta.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR+'/X_Home/templates'],
+        'DIRS': [BASE_DIR+'/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

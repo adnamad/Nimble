@@ -1,0 +1,165 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load staticfiles %}
+{% block head_title %} Welcome | {% endblock %}
+
+
+{% block content %} 
+<table width="100%" border="0">
+     
+  <tr valign="top"> 
+    <td bgcolor="#aaa" width="100">
+    <b>World</b><br/>
+    </td>
+    {% for x in ent %}
+
+    <td bgcolor="#eee" width="100" height="400">
+        <h3 class="text-align-center">{{x.title}}</h3>
+        <img src="{{x.img_url}}" class="img-responsive" alt="Responsive image"><br>
+        <p class="text-align-center">{{x.summary}}</p>
+        <p class="text-align-center"><a class="btn btn-default" href="{{x.page_link}}" target="_blank" role="button">View details &raquo;</a></p>
+        <p>{{x.category}}</p>
+    </td>
+    {% endfor %}
+  </tr>
+      <tr valign="top">
+      <td bgcolor="#aaa" width="100">
+      <b>Politics</b><br/>
+      </td>
+      <td bgcolor="#eee" width="100" height="400">
+        Technical and Managerial Tutorials
+    </td>
+    <td bgcolor="#eee" width="100" height="400">
+        Technical and Managerial Tutorials
+    </td>
+    <td bgcolor="#eee" width="100" height="400">
+        Technical and Managerial Tutorials
+    </td>
+    <td bgcolor="#eee" width="100" height="400">
+        Technical and Managerial Tutorials
+    </td>  
+      </tr>
+      
+      <tr valign="top">
+      <td bgcolor="#aaa" width="100">
+      <b>Sports</b><br/>
+      </td>
+      <td bgcolor="#eee" width="100" height="400">
+        Technical and Managerial Tutorials
+    </td>
+    <td bgcolor="#eee" width="100" height="400">
+        Technical and Managerial Tutorials
+    </td>
+    <td bgcolor="#eee" width="100" height="400">
+        Technical and Managerial Tutorials
+    </td>
+    <td bgcolor="#eee" width="100" height="400">
+        Technical and Managerial Tutorials
+    </td>
+      </tr>
+      <tr valign="top">
+      <td bgcolor="#aaa" width="100">
+      <b>Football</b><br />
+      </td>
+      <td bgcolor="#eee" width="100" height="400">
+        Technical and Managerial Tutorials
+    </td>
+    <td bgcolor="#eee" width="100" height="400">
+        Technical and Managerial Tutorials
+    </td>
+    <td bgcolor="#eee" width="100" height="400">
+        Technical and Managerial Tutorials
+    </td>
+    <td bgcolor="#eee" width="100" height="400">
+        Technical and Managerial Tutorials
+    </td>
+      </tr>
+      <tr valign="top">
+      <td bgcolor="#aaa" width="100">
+      <b>Buisness</b><br/>
+      </td>
+      <td bgcolor="#eee" width="100" height="400">
+        Technical and Managerial Tutorials
+    </td>
+    <td bgcolor="#eee" width="100" height="400">
+        Technical and Managerial Tutorials
+    </td>
+    <td bgcolor="#eee" width="100" height="400">
+        Technical and Managerial Tutorials
+    </td>
+    <td bgcolor="#eee" width="100" height="400">
+        Technical and Managerial Tutorials
+    </td>
+
+      </tr>
+      <tr valign="top">
+      <td bgcolor="#aaa" width="100">
+      <b>Technology</b><br />
+      </td>
+      <td bgcolor="#eee" width="100" height="400">
+        Technical and Managerial Tutorials
+    </td>
+    <td bgcolor="#eee" width="100" height="400">
+        Technical and Managerial Tutorials
+    </td>
+    <td bgcolor="#eee" width="100" height="400">
+        Technical and Managerial Tutorials
+    </td>
+    <td bgcolor="#eee" width="100" height="400">
+        Technical and Managerial Tutorials
+    </td>  
+      </tr>
+      <tr valign="top">
+        <td bgcolor="#aaa" width="100">
+      <b>Culture</b><br/>
+      </td>
+      <td bgcolor="#eee" width="100" height="400">
+        Technical and Managerial Tutorials
+    </td>
+    <td bgcolor="#eee" width="100" height="400">
+        Technical and Managerial Tutorials
+    </td>
+    <td bgcolor="#eee" width="100" height="400">
+        Technical and Managerial Tutorials
+    </td>
+    <td bgcolor="#eee" width="100" height="400">
+        Technical and Managerial Tutorials
+    </td>
+      </tr>
+    </table>
+
+ 
+{% endblock %}
+  <!-- <!DOCTYPE html>
+   <html>
+   <head>
+   </body>
+   </html>
+  
+
+
+
+   {% for x in ent %}
+    {% if forloop.counter|divisibleby:5 %}
+      <div class="col-md-6" >
+      <div class="inside1">
+        <h3 class="text-align-center">{{x.title}}</h3>
+        <img src="{{x.img_url}}" class="img-responsive" alt="Responsive image"><br>
+        <p class="text-align-center">{{x.summary}}</p>
+        <p class="text-align-center"><a class="btn btn-default" href="{{x.page_link}}" target="_blank" role="button">View details &raquo;</a></p>
+        <p>{{x.category}}</p>
+      </div>
+      </div>
+    {% else %}
+      <div class="col-md-3">
+      <div class="inside">
+        <h3 class="text-align-center">{{x.title}}</h3>
+        <img src="{{x.img_url}}" class="img-responsive" alt="Responsive image"><br>
+        <p class="text-align-center">{{x.summary}}</p>
+        <p class="text-align-center"><a class="btn btn-default" href="{{x.page_link}}" target= "_blank"  role="button">View details &raquo;</a></p>
+        <p>{{x.category}}</p>
+      </div>
+      </div>
+    {% endif %}
+  {% endfor %}
+

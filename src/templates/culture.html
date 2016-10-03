@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load staticfiles %}
+{% block head_title %} Welcome | {% endblock %}
+
+
+{% block content %} 
+<div class="container">
+  {% for x in ent %}
+  {% if x.category == 'football' %}
+    {% if forloop.counter|divisibleby:5 %}
+      <div class="col-md-6" >
+      <div class="inside1">
+        <h3 class="text-align-center">{{x.title}}</h3>
+        <img src="{{x.img_url}}" class="img-responsive" alt="Responsive image"><br>
+        <p class="text-align-center">{{x.summary}}</p>
+        <p class="text-align-center"><a class="btn btn-default" href="{{x.page_link}}" target="_blank" role="button">View details &raquo;</a></p>
+        <p>{{x.category}}</p>
+      </div>
+      </div>
+    {% else %}
+      <div class="col-md-3">
+      <div class="inside">
+        <h3 class="text-align-center">{{x.title}}</h3>
+        <img src="{{x.img_url}}" class="img-responsive" alt="Responsive image"><br>
+        <p class="text-align-center">{{x.summary}}</p>
+        <p class="text-align-center"><a class="btn btn-default" href="{{x.page_link}}" target= "_blank"  role="button">View details &raquo;</a></p>
+        <p>{{x.category}}</p>
+      </div>
+      </div>
+    {% endif %}
+  {% endif %}
+  {% endfor %}
+</div>
+
+{% endblock %}
+

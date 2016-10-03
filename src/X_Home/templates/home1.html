@@ -2,39 +2,29 @@
 {% load crispy_forms_tags %}
 {% load staticfiles %}
 {% block head_title %} Welcome | {% endblock %}
- <head>
+
+<head>
 <link rel="stylesheet" type="text/css" href="navbar-static-top.css">
 </head> 
 
 <style>
-    {% block style %}
-   .navbar-static-top {
+{% block style %}
+.navbar-static-top {
   margin-bottom: 50em;
   background-color: #0E3D14;
   border-color: #1A5F23;
 }
 
 
-.jumbotron {
-  /*background-color:#0E3D14;*/
-    background: linear-gradient(#170A8F,#64AFF5);
-    color: #FFF;
-    height: 20em;
-    margin-top: 4em;
-    margin-left: 1em;
-    margin-right: 1em;
-    border-radius: 15px;
-}
 
  .inside{
         height: 33em;
         width:20em;
-        background-color:#ADD8E6;
-         /*#D3D3D3;*/
-        
-        border: 2px solid #f6f6f6;
-        /*padding: 5px;*/
-        
+        background-color:#DCDCDC;
+                
+        border: 0.1em solid #f6f6f6;
+        border-top-color: #48D1CC;
+                
         margin-bottom:0.2em;
         margin-right:0.2em;
         margin-left: 0.2em;
@@ -45,10 +35,13 @@
      .inside1{
         height: 33em;
         width:40.4em;
-        background-color: #00BFFF;
+        background-color: #C71585 ; 
+        /*F5F5F5;*/
      
-        border: 2px solid #f6f6f6;
-        /*padding: 5px;*/
+        /*border: 0.2em solid #f6f6f6;*/
+        border-top-color:   #CD853F;
+        /*#9932CC;*/
+        border-left-color:  #C71585;
         margin-bottom: 0.2em;
         margin-right: 0.2em;
         margin-left: :0.2em;
@@ -58,11 +51,12 @@
 
     }
 
-    /*.inside:hover{
-      background-color: #08023F;
-    }*/
-</style>
+      a:link    {color:#0000CD; background-color:transparent; text-decoration:none}
+      a:visited {color: #FA8072; background-color:transparent; text-decoration:none}
+      a:hover   {color:red; background-color:transparent; text-decoration:underline}
+      a:active  {color:yellow; background-color:transparent; text-decoration:underline}
 
+    
     {% endblock %}
 </style>
 
@@ -136,8 +130,9 @@
                        <h3 class="text-align-center">{{x.title}}</h3>
                        <img src="{{x.img_url}}" class="img-responsive" alt="Responsive image">
                        <br>
-                       <p>{{x.summary}} </p>
-                       <!--<p class="text-align-center"><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>-->
+                       <!-- <p class="text-align-center">{{x.summary}}</p> -->
+                       <p class="text-align-center"><a class="btn btn-default" href="{{x.page_link}}" target="_blank" role="button">View details &raquo;</a></p>
+                        <p>{{x.category}}</p>
                    </div>
                </div>
                {% else %}
@@ -146,8 +141,9 @@
                        <h3 class="text-align-center">{{x.title}}</h3>
                        <img src="{{x.img_url}}" class="img-responsive" alt="Responsive image">
                        <br>
-                       <p>{{x.summary}} </p>
-                       <!--<p class="text-align-center"><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>-->
+                       <!-- <p class="text-align-center">{{x.summary}}</p> -->
+                       <p class="text-align-center"><a class="btn btn-default" href="{{x.page_link}}" target= "_blank"  role="button">View details &raquo;</a></p>
+                       <p>{{x.category}}</p>
                    </div>
                </div>
                {% endif %}

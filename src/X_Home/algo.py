@@ -61,12 +61,7 @@ def clf(example):
 		os.makedirs(dest)
 	pickle.dump(gs_clf,open(os.path.join(dest, 'news.pkl'), 'wb'),protocol=4) 
 
-	#gs_clf = pickle.load(open(os.path.join('pkl_objects', 'news.pkl'), 'rb'))
-
-	# save_classifier = open("news.pickle","wb")
-	# pickle.dump(gs_lr_tfidf, save_classifier)
-	# save_classifier.close()
-
+	
 	print('CV Accuracy: %.3f' % gs_clf.best_score_)
 
 	clf = gs_clf.best_estimator_      
@@ -74,7 +69,7 @@ def clf(example):
 	label = {0:'politics', 1:'sports', 2:'business',3:'culture',4:'football',5:'tech',6:'world'}
 	# example =['Danny Willett fears becoming ‘target’ for Ryder Cup fans after brother’s article']
 	prediction = label[clf.predict(example)[0]]
-	print(prediction)
+	
 	return(prediction)
 
 

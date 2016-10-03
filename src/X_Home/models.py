@@ -4,9 +4,11 @@ from django.db import models
 class Articles(models.Model):
 
 	title=models.CharField(max_length=300)
-	summary=models.CharField(max_length=300)
-	img_url=models.CharField(max_length=300)
-	category = models.CharField(max_length= 20)
+	summary=models.CharField(max_length=300, default= 'Nothing to show',null = True)
+	img_url=models.CharField(max_length=300, default = 'http://www.google.com')
+	category = models.CharField(max_length= 20,default = 'News')
+	page_link = models.CharField(max_length=100)
+	
 
 class contact(models.Model):
     Email = models.EmailField()
