@@ -3,7 +3,7 @@ from django.core.mail import send_mail
 
 from django.shortcuts import render
 
-from .newsapi import news_miner #,get_description
+from .newsapi import news_miner ,get_description
 from .models import Articles
 from .forms import contactForm
 from .newsclf import clf
@@ -12,34 +12,34 @@ from bs4 import BeautifulSoup
 
 
 def home(request):
-    obj = news_miner()
-    asp = Articles.objects.all()[::-1]
-    for news in obj[:10]:
-        # timest = news['webPublicationDate']
-        entry_title = news['webTitle']
-        entry_category = clf(entry_title)
-        # print(entry_category)
-        entry_link = news['webUrl']
-        # entry_sum = get_description(entry_link)
-        # if entry_sum:
-        # print(entry_sum.encode('utf8'))
-        entry_img =   news['fields']['thumbnail']                
+    # obj = news_miner()
+    # asp = Articles.objects.all()[::-1]
+    # for news in obj:
+    #     # timest = news['webPublicationDate']
+    #     entry_title = news['webTitle']
+    #     entry_category = clf(entry_title)
+    #     print(entry_category)
+    #     # print(entry_category)
+    #     entry_link = news['webUrl']
+    #     entry_sum = get_description(entry_link)
+    #     # if entry_sum:
+    #     # print(entry_sum.encode('utf8'))
+    #     entry_img =   news['fields']['thumbnail']                
         
 
 
-        # entry_prediction = clf(entry_title)
-        for ob in asp:
-            if entry_title == ob.title:
-                break
-        else:
-            a = Articles(title=entry_title, img_url=entry_img, page_link = entry_link, category = entry_category)
-            
-            a.save()
-            asp = Articles.objects.all()[::-1]
+    #     # entry_prediction = clf(entry_title)
+    #     for ob in asp:
+    #         if entry_title == ob.title:
+    #             break
+    #     else:
+    #         a = Articles(title=entry_title, img_url=entry_img, page_link = entry_link,summary = entry_sum, category = entry_category)
+    #         a.save()
+    #         asp = Articles.objects.all()[::-1]
 
     
     # print(asp[2].title)
-    # print(asp[2].summary)
+    # print(asp[2].category)
     asp = Articles.objects.all()[::-1]
     context = {
         "ent": asp
