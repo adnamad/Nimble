@@ -1,9 +1,5 @@
-# from nltk.stem.porter import PorterStemmer
 import os
-# from nltk import word_tokenize
-# from nltk.corpus import stopwords
 import dill as pickle
-#from .algo import tokenizer
 
 def clf(example):
 	# stop_words = pickle.load(open('./pkl_objects/stopwords.pkl', 'rb'))
