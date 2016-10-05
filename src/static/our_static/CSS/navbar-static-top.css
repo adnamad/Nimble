@@ -1,7 +1,9 @@
+
 body {
   min-height: 1000px;
   max-width: 100%;
-  background-color: #F8F8FF;
+  background-color: #ffffff;
+  -webkit-font-smoothing: antialiased;
 }
 .navbar-default .navbar-static-top {
   margin-bottom: 50em;
@@ -50,7 +52,8 @@ body {
   .inside{
         height: 36em;
         width:20em;
-        background-color:#DCDCDC;
+        background-color:#f6f6f6;
+
                 
         border: 0.1em solid #f6f6f6;
         border-top-color: #48D1CC;
@@ -67,7 +70,7 @@ body {
         width:40.4em;
         background-color:#B82266 ; 
         /*F5F5F5;*/
-     
+        color: #ffffff;
         border: 0.2em solid #f6f6f6;
         border-top-color:   #CD853F;
         /*#9932CC;*/
@@ -79,6 +82,16 @@ body {
         overflow: auto;
         -webkit-column-rule: 1px solid lightblue;
 
+    }
+
+    .inside p {
+      padding-top: 3em;
+      font-family: 'Merriweather Sans', sans-serif;
+      color: #858585
+    }
+
+    .inside1 p {
+      font-family: 'Merriweather Sans', sans-serif;
     }
     
       a:link    {color:#F8F8FF; background-color:transparent; text-decoration:none;}
