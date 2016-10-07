@@ -1,47 +1,48 @@
-   {% load staticfiles %}
-
-   <!-- Static navbar -->
-    <nav class="navbar navbar-default navbar-static-top" position = 'fixed' top:0>
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="{% url 'home' %}">X_HOME</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="{% url 'home' %}">Home</a></li>
-            <!-- <li><a href="{% url 'about' %}">About</a></li> -->
+{% load staticfiles %}
+<nav class="navbar navbar-default navbar-static-top" >
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="{% url 'home' %}">Nimble
+        <!-- <img src="{%static 'img/logo.png'%}"></img> --></a>
+    </div>
+    <ul class="nav navbar-nav">
+      
+      <li ><a href="{% url 'home' %}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+            <li><a href="">Objective</a></li>
+            <li><a href="">Documentation</a></li>
+            <li><a href="">About Us</a></li>
             <li><a href="{% url 'contact' %}">Contact</a></li>
-            
+             
+           
           </ul>
-
-
           <ul class="nav navbar-nav navbar-right">
-          {% if request.user.is_authenticated %}
+            {% if request.user.is_authenticated %}
             <li><a href="{% url 'auth_logout' %}">Logout</a></li>
             {% else %}
-            <li><a href="{% url 'registration_register' %}">Register</a></li>
+            <li style="float:right"><a href="{% url 'registration_register' %}">Register</a></li>
             {% endif %}
           </ul>
-
           {% if not request.user.is_authenticated and not "/accounts/login" in request.get_full_path %}
-            <form class='navbar-form navbar-right' method='POST' action='{% url "auth_login" %}'>{% csrf_token %}
-              <div class='form-group'>
-                  <input type='text' class='form-control' name='username' placeholder='Username' /> 
+          <!-- <form class='navbar-form navbar-right' method='POST' action='{% url "auth_login" %}'>{% csrf_token %}
+            <div class='form-group'>
+                  <input type='text' class='form-control' name='username' placeholder='Username' />
               </div>
               <div class='form-group'>
                   <input type='password' class='form-control' name='password' placeholder='Password' />
               </div>
               <button type='submit' class='btn btn-default'>Login</button>
-          </form>
+          </form> -->
           {% endif %}
 
-
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
+  </div>
+</nav>
+<ul class="nav nav-pills">
+  <li class="all-space" role="presentation" class="active"><a href="{% url 'home' %}">Home</a></li>
+  <li class="all-space" role="presentation"><a href="{% url 'world' %}">World</a></li>
+  <li class="all-space" role="presentation"><a href="{% url 'tech' %}">Tech</a></li>
+  <li class="all-space" role="presentation"><a href="{% url 'football' %}">Football</a></li>
+  <li class="all-space" role="presentation"><a href="{% url 'politics' %}">Politics</a></li>
+  <li class="all-space" role="presentation"><a href="{% url 'sports' %}">Sports</a></li>
+  <li class="all-space" role="presentation"><a href="{% url 'culture' %}">Culture</a></li>
+  <li class="all-space" role="presentation"><a href="{% url 'buisness' %}">Buisness</a></li>
+</ul>

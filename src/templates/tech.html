@@ -19,7 +19,7 @@
       {% endif %}
       <!-- <p class="text-align-center"><a class="btn btn-default" href="{{x.page_link}}" target="_blank" role="button">View details &raquo;</a></p> -->
       <!-- <p>{{x.category}}</p> -->
-    <a href="{{x.page_link}}" target="_blank">
+      <a href="{{x.page_link}}" target="_blank">
           <span class="link-spanner"></span>
         </a> 
     </div>
@@ -29,16 +29,16 @@
     <div class="inside">
       <h3 class="text-align-center">{{x.title}}</h3>
       <img src="{{x.img_url}}" class="img-responsive" alt="Responsive image"><br>
-      {% if x.summary == None %}
+            {% if x.summary == None %}
       <p class="text-align-center"></p>
       {% else %}
       <p class="text-align-center">{{x.summary}} </p>
       {% endif %}
-      <!-- <p class="text-align-center"><a class="btn btn-default" href="{{x.page_link}}" target= "_blank"  role="button">View details &raquo;</a></p> -->
-      <!-- <p>{{x.category}}</p> -->
       <a href="{{x.page_link}}" target="_blank">
           <span class="link-spanner"></span>
         </a> 
+      <!-- <p class="text-align-center"><a class="btn btn-default" href="{{x.page_link}}" target= "_blank"  role="button">View details &raquo;</a></p> -->
+      <!-- <p>{{x.category}}</p> -->
     </div>
     </div>
   {% endif %}

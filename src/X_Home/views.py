@@ -54,15 +54,115 @@ def home(request):
 
     context = {
         "ent": asp,
-        "wobj": w_obj,
-        "sobj": s_obj,
-        "fobj": f_obj,
-        "cobj": c_obj,
-        "bobj": b_obj,
-        "pobj": p_obj,
-        "tobj": t_obj,
+        "wobj": w_obj[:14],
+        "sobj": s_obj[:7],
+        "fobj": f_obj[:10],
+        "cobj": c_obj[:7],
+        "bobj": b_obj[:10],
+        "pobj": p_obj[:10],
+        "tobj": t_obj[:10],
     }
-    return render(request,'home1.html',context)
+    return render(request,'home.html',context)
+
+
+def world(request):
+    asp = Articles.objects.all()[::-1]
+    w_obj = []
+
+    for X in asp:
+        if X.category == 'world':
+            w_obj.append(X)
+
+    context = {
+         "abc": w_obj,
+    } 
+
+    return render(request,'world.html', context)
+
+def politics(request):
+    asp = Articles.objects.all()[::-1]
+    p_obj = []
+
+    for X in asp:
+        if X.category == 'politics':
+            p_obj.append(X)
+
+    context = {
+         "abc": p_obj,
+    } 
+
+    return render(request,'politics.html', context)
+
+def buisness(request):
+    asp = Articles.objects.all()[::-1]
+    b_obj = []
+
+    for X in asp:
+        if X.category == 'business':
+            b_obj.append(X)
+
+    context = {
+         "abc": b_obj,
+    } 
+
+    return render(request,'buisness.html', context)
+
+def tech(request):
+    asp = Articles.objects.all()[::-1]
+    t_obj = []
+
+    for X in asp:
+        if X.category == 'tech':
+            t_obj.append(X)
+
+    context = {
+         "abc": t_obj,
+    } 
+
+    return render(request,'tech.html', context)
+
+def football(request):
+    asp = Articles.objects.all()[::-1]
+    f_obj = []
+
+    for X in asp:
+        if X.category == 'football':
+            f_obj.append(X)
+
+    context = {
+         "abc": f_obj,
+    } 
+
+    return render(request,'football.html', context)
+
+def sports(request):
+    asp = Articles.objects.all()[::-1]
+    s_obj = []
+
+    for X in asp:
+        if X.category == 'sports':
+            s_obj.append(X)
+
+    context = {
+         "abc": s_obj,
+    } 
+
+    return render(request,'sports.html', context)
+
+def culture(request):
+    asp = Articles.objects.all()[::-1]
+    c_obj = []
+
+    for X in asp:
+        if X.category == 'culture':
+            c_obj.append(X)
+
+    context = {
+         "abc": c_obj,
+    } 
+
+    return render(request,'culture.html', context)
+
 
 def contact(request):
     title = "Enter your Details"

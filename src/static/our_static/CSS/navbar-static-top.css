@@ -117,7 +117,7 @@ body {
   }
   
   .inside{
-        height: 36em;
+        height: 34em;
         width:20em;
         background-color:#f6f6f6;
 
@@ -134,7 +134,7 @@ body {
 
     }
      .inside1{
-        height: 36em;
+        height: 34em;
         width:40.4em;
         background-color:#B82266 ; 
         /*F5F5F5;*/
@@ -177,13 +177,12 @@ body {
   top:0;
   left: 0;
   z-index: 1;
-
-}   
+ }  
 
     
       a:link    {color:#F8F8FF; background-color:transparent; text-decoration:none;}
       /*a:visited {color: #FA8072; background-color:transparent; text-decoration:none}*/
-      a:hover   { background-color:transparent;}
+      .inside a:hover   { background-color:#DCDCDC;}
       /*a:active  {color:yellow; background-color:transparent; text-decoration:underline}*/
     hr { 
     /*display: block;*/
