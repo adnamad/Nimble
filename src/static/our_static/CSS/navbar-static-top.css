@@ -160,7 +160,7 @@ body {
 
     .inside h3 {
       
-      color: #000000;
+      color: #333333;
     }
 
     .inside1 p {
@@ -178,6 +178,31 @@ body {
   left: 0;
   z-index: 1;
  }  
+
+  .cat
+  {
+    color: #005689;
+
+  }
+
+  .slash
+  {
+    padding-left:4px;
+    padding-right: 4px;
+    color: #d6d6d6;
+  }
+
+  .cat1
+  {
+    color: #FDADBA;
+  }
+
+  .slash1
+  {
+    padding-left:4px;
+    padding-right: 4px;
+    color: #FDADBA;
+  }
 
     
       a:link    {color:#F8F8FF; background-color:transparent; text-decoration:none;}
